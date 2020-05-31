@@ -1,0 +1,30 @@
+version: "3"
+services:
+  db:
+    image: mysql:8.0
+    environment:
+      MYSQL_ROOT_PASSWORD: mysql4aleck
+      MYSQL_DATABASE: domains
+      MYSQL_USER: root
+      MYSQL_PASSWORD: mysql4aleck
+    ports:
+      - "6033:3306"
+    volumes:
+      - "./db_data:/var/lib/mysql"
+  server:
+    build: .
+    ports:
+      - "8080:8080"
+    environment:
+      - DB_CONN=root:mysql4aleck@(db)/domains?charset=utf8&parseTime=true
+  web:
+    build:
+      context: ./frontend
+      args:
+        serverurl: http://localhost:8080
+    ports:
+      - "8090:80"
+#networks:
+#  default:
+#    external:
+#      name: dev-network

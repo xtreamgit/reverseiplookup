@@ -1,0 +1,2 @@
+export REACT_APP_BASE_SERVER_URL=http://localhost:8080
+export DB_CONN="root:mysql4aleck@(localhost:3306)/domains?charset=utf8&parseTime=true"

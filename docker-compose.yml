@@ -28,7 +28,7 @@ services:
     build:
       context: ./frontend
       args:
-        serverurl: http://localhost:8080
+        serverurl: ${EXTERNAL_IP}:8080
     ports:
       - "8090:80"
 networks:
